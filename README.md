@@ -46,7 +46,7 @@ This will install the project dependencies in the `lola-seq` virtual environment
 Download from mamba:
 ```bash
 mamba activate lola-seq
-mamba install -c bioconda sra-tools
+mamba install -c bioconda -c conda-forge sra-tools=3.1.1
 ```
 
 Instructions on how to use SRAtoolkit:
