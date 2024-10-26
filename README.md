@@ -3,13 +3,26 @@
 
 # Github Setup
 
-    - Create a fork of the https://github.com/rdalipo1/PFB-LOLA-seq repository
+Create a fork of the https://github.com/rdalipo1/PFB-LOLA-seq repository
+    
+- Clone the ssh for you fork
+```bash
+git clone git@github.com:usr/fork_name.git
+```
+    
+Make sure your fork is updated before pushing from your local	
+- Sync on the website
+- Pull on local
+```git pull```
 
-    - git clone the ssh for you fork
-
-    - Make sure your fork is updated before pushing from your local	
-
-    - To contribute to the main, you need to push to your fork first, then contribute from the github website
+To contribute to the main, you need to push to your fork first, then contribute from the github website
+- Push to your fork
+```bash
+git add
+git commit -m 'message'
+git push
+```
+- Contribute from fork github website
 
 # Development Setup
 
