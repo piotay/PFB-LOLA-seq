@@ -40,3 +40,11 @@ PFB-LOLA-seq $ pip install -e .
 ```
 
 This will install the project dependencies in the `lola-seq` virtual environment.
+
+# SRAToolkit
+
+Download from here: https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit#ncbi-sra-toolkit
+
+Instructions on how to use SRAtoolkit:
+- Prefetch to grab the SRA file from NCBI: https://erilu.github.io/python-fastq-downloader/
+- fastq-dump to convert SRA file to fastq: https://edwards.flinders.edu.au/fastq-dump/
