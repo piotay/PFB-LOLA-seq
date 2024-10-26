@@ -43,7 +43,11 @@ This will install the project dependencies in the `lola-seq` virtual environment
 
 # SRAToolkit Instructions
 
-Download from here: https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit#ncbi-sra-toolkit
+Download from mamba:
+```bash
+mamba activate lola-seq
+mamba install -c bioconda sra-tools
+```
 
 Instructions on how to use SRAtoolkit:
 - Prefetch to grab the SRA file from NCBI: https://erilu.github.io/python-fastq-downloader/
