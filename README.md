@@ -8,11 +8,11 @@
 	
 
 	- Clone repository using: 
-	```git clone git@github.com:usr/PFB-RNA_seq-2024.fork.git```
+	`git clone git@github.com:usr/PFB-RNA_seq-2024.fork.git`
 
 	
 	- Make sure your fork is up to date on the website and on local before using 
-	```git push```
+	`git push`
 
 
 	- Push changes from local to your fork first, then contribute to main branch
