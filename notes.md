@@ -10,19 +10,20 @@ While we were downloading our files for linked scRNAseq and scATACseq, we realiz
 
 ## Peak Annotations:
 
+### First need annotation of entire genome
 - Download .gff3 file from Gencode that annotates every gene in the human genome
 - Convert to .bed file using gff2bed from BEDOPS package
-  `gff2bed < input.gff3 > output.bed`
+  >`gff2bed < input.gff3 > output.bed`
 - filter to only genes
-  `awk '{if ($8 == "gene") print}' file.bed`
+  >`awk '{if ($8 == "gene") print}' file.bed`
 - filter to only protein-coding genes
-  `awk '/gene_type=protein_coding/ {print $0}' file.bed`
-- Use script to update the ENSEMBL ID with the gene name
-  polish_bed.py
-  filter to just location and gene
-  `% cut -f 1-4`
-- to return only the gene location and name
-- this file is used to annotate peaks
+  >`awk '/gene_type=protein_coding/ {print $0}' file.bed`
+- Use python script `polish_bed.py` to update the ENSEMBL ID with the gene name
+- filter to just location and gene
+  >`% cut -f 1-4`
+- this file is used to annotate peaks, should look like:
+  >`chr1	65418	71585	OR4F5`
+  > `chr1	450739	451678	OR4F29`
 
 recieve file from nathan, do `bedtools closest -d -a nate_file -b gene_annotations`
 
