@@ -45,6 +45,47 @@ mu.pl.histogram(atac, ['n_genes_by_counts', 'total_counts'], linewidth=0)
 ```
 ![image](https://github.com/user-attachments/assets/d58edd9c-4f0a-41e9-bc20-969d2ff43824)
 
+```python
+mu.pp.filter_var(atac, 'n_cells_by_counts', lambda x: x >= 10)
+print(f"Before: {atac.n_obs} cells")
+mu.pp.filter_obs(atac, 'total_counts', lambda x: (x >= 1000) & (x <= 80000))
+print(f"(After total_counts: {atac.n_obs} cells)")
+mu.pp.filter_obs(atac, 'n_genes_by_counts', lambda x: (x >= 100) & (x <= 30000))
+print(f"After: {atac.n_obs} cells")
+```
+<span style="font-size: larger;">Before: 11909 cells</span>  
+<span style="font-size: larger;">(After total_counts: 11564 cells)</span>  
+<span style="font-size: larger;">After: 11564 cells</span>
+
+```python
+mu.pl.histogram(atac, ['n_genes_by_counts', 'total_counts'], linewidth=0)
+```
+![image](https://github.com/user-attachments/assets/2038603f-942f-455b-a398-40aeb83058f8)
+
+```python
+ac.pl.fragment_histogram(atac, region='chr1:1-2000000')
+```
+![image](https://github.com/user-attachments/assets/7fb78d6f-efdc-4ab8-a958-7b48faef0b9d)
+
+```python
+ac.tl.nucleosome_signal(atac, n=1e6)
+mu.pl.histogram(atac, "nucleosome_signal", linewidth=0)
+```
+![image](https://github.com/user-attachments/assets/909a176a-6086-4c5d-833d-7c20c50e050a)
+
+```python
+ac.tl.get_gene_annotation_from_rna(mdata['rna']).head(3)
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
