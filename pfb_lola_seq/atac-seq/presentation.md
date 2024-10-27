@@ -76,6 +76,44 @@ mu.pl.histogram(atac, "nucleosome_signal", linewidth=0)
 ```python
 ac.tl.get_gene_annotation_from_rna(mdata['rna']).head(3)
 ```
+| Chromosome | Start | End   | gene_id         | gene_name  |
+|------------|-------|-------|-----------------|------------|
+| MIR1302-2HG | chr1  | 29553 | 30267 | ENSG00000243485 | MIR1302-2HG |
+| FAM138A     | chr1  | 36080 | 36081 | ENSG00000237613 | FAM138A     |
+| OR4F5       | chr1  | 65418 | 69055 | ENSG00000186092 | OR4F5       |
+
+
+```python
+tss = ac.tl.tss_enrichment(mdata, n_tss=1000)
+```
+![image](https://github.com/user-attachments/assets/723e0148-d6f7-441d-ab71-27d72db6a559)
+
+```python
+tss
+```
+
+```python
+AnnData object with n_obs × n_vars = 11564 × 2001
+    obs: 'n_genes_by_counts', 'total_counts', 'nucleosome_signal', 'tss_score'
+    var: 'TSS_position'
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
