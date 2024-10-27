@@ -28,6 +28,14 @@ from muon import atac as ac
   mdata
 ```
 
+![image](https://github.com/user-attachments/assets/4edc7488-37db-455f-b69d-7b5d7519ffb1)
+
+```python
+mdata.var_names_make_unique()
+mdata
+```
+
+![image](https://github.com/user-attachments/assets/c549248f-e0da-4357-8da9-e396cd81b633)
 
 
 
