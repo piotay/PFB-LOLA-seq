@@ -91,17 +91,24 @@ tss = ac.tl.tss_enrichment(mdata, n_tss=1000)
 ```python
 tss
 ```
+![image](https://github.com/user-attachments/assets/37ca0304-2c94-48c4-a103-9f184c73c513)
 
 ```python
-AnnData object with n_obs × n_vars = 11564 × 2001
-    obs: 'n_genes_by_counts', 'total_counts', 'nucleosome_signal', 'tss_score'
-    var: 'TSS_position'
+ac.pl.tss_enrichment(tss)
 ```
 
+![image](https://github.com/user-attachments/assets/38338970-8aa9-4eae-824c-0fbfa9222e62)
 
+```python
+atac.layers["counts"] = atac.X.copy()
+sc.pp.normalize_total(atac, target_sum=1e4)
+sc.pp.log1p(atac)
+atac.layers["lognorm"] = atac.X.copy()
+sc.pp.highly_variable_genes(atac, min_mean=0.05, max_mean=1.5, min_disp=.5)
+sc.pl.highly_variable_genes(atac)
+```
 
-
-
+![image](https://github.com/user-attachments/assets/3db30301-ca8a-4cc5-97b2-fdba2ed43cab)
 
 
 
