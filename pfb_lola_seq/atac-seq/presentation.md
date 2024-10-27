@@ -26,14 +26,10 @@ from muon import atac as ac
 
   mdata = mu.read("data/pbmc10k.h5mu")
   mdata
-```
 
-![image](https://github.com/user-attachments/assets/4edc7488-37db-455f-b69d-7b5d7519ffb1)
-
-```python
-mdata.var_names_make_unique()
-mdata
-```
+  mdata.var_names_make_unique()
+  mdata
+  ```
 
 ![image](https://github.com/user-attachments/assets/c549248f-e0da-4357-8da9-e396cd81b633)
 
@@ -85,10 +81,6 @@ ac.tl.get_gene_annotation_from_rna(mdata['rna']).head(3)
 
 ```python
 tss = ac.tl.tss_enrichment(mdata, n_tss=1000)
-```
-![image](https://github.com/user-attachments/assets/723e0148-d6f7-441d-ab71-27d72db6a559)
-
-```python
 tss
 ```
 ![image](https://github.com/user-attachments/assets/37ca0304-2c94-48c4-a103-9f184c73c513)
@@ -134,8 +126,6 @@ sc.pl.pca_variance_ratio(atac, log=True)
 sc.pp.neighbors(atac, n_neighbors=10, n_pcs=20)
 sc.tl.leiden(atac, resolution=.5)
 ```
-![image](https://github.com/user-attachments/assets/810d965d-2fff-45a0-bdde-4e67eb6bdfd5)
-
 
 ```python
 sc.tl.umap(atac, spread=1., min_dist=.5, random_state=11)
@@ -147,8 +137,6 @@ sc.pl.umap(atac, color="leiden", legend_loc="on data")
 ```python
 ac.tl.rank_peaks_groups(atac, 'leiden', method='t-test')
 ```
-
-![image](https://github.com/user-attachments/assets/0a981e17-54db-4fc0-8210-c46994ea4432)
 
 ```python
 result = atac.uns['rank_genes_groups']
