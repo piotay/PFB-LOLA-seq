@@ -10,15 +10,14 @@
 - First item NCBI GEO accession: GSE218392, 
 - Second item Human cell Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis
 
-## Pipeline
--scanpy
+## Pipeline: scanpy
 
-- First item Import os
-- Second item import numpy as np
-- Third item import pandas as pd
-- Fourth item import scanpy as sc
-- Fifth item import anndata as ad
-- First item import muon as mu
+`import os`  
+`import numpy as np`  
+`import pandas as pd`  
+`import scanpy as sc`  
+`import anndata as ad`  
+`import muon as mu`
 
  #For ATACseq, in addition,
  ### Import a module with ATAC-seq-related functions
