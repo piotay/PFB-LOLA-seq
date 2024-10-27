@@ -37,6 +37,12 @@ mdata
 
 ![image](https://github.com/user-attachments/assets/c549248f-e0da-4357-8da9-e396cd81b633)
 
+```python
+from muon import atac as ac
+atac = mdata.mod['atac']
+sc.pp.calculate_qc_metrics(atac, percent_top=None, log1p=False, inplace=True)
+mu.pl.histogram(atac, ['n_genes_by_counts', 'total_counts'], linewidth=0)
+```
 
 
 
