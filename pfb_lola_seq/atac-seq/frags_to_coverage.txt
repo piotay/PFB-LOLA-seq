@@ -11,3 +11,5 @@
 # on a single nucleotide basis. We did not include zeros. We ran this in the terminal as well
 #
 # bedtools genomecov -dz -i MA8_filtered_final.tsv -g human_chrom_sizes_fix.txt > MA8_genome_cov.txt 
+
+#test
