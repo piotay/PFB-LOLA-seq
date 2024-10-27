@@ -43,6 +43,7 @@ atac = mdata.mod['atac']
 sc.pp.calculate_qc_metrics(atac, percent_top=None, log1p=False, inplace=True)
 mu.pl.histogram(atac, ['n_genes_by_counts', 'total_counts'], linewidth=0)
 ```
+![image](https://github.com/user-attachments/assets/d58edd9c-4f0a-41e9-bc20-969d2ff43824)
 
 
 
