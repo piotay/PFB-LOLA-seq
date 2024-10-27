@@ -11,20 +11,23 @@
 - Second item Human cell Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis
 
 ## Pipeline: scanpy
-
-`import os`  
-`import numpy as np`  
-`import pandas as pd`  
-`import scanpy as sc`  
-`import anndata as ad`  
-`import muon as mu`
-
- #For ATACseq, in addition,
+```python
+import os  
+import numpy as np  
+import pandas as pd  
+import scanpy as sc 
+import anndata as ad
+import muon as mu
+```
+ # For ATACseq, in addition,
  ### Import a module with ATAC-seq-related functions
- from muon import atac as ac
+ ```python
+from muon import atac as ac
 
-mdata = mu.read("data/pbmc10k.h5mu")
-mdata
+  mdata = mu.read("data/pbmc10k.h5mu")
+  mdata
+```
+
 
 
 
