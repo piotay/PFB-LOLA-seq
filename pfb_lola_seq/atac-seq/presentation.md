@@ -142,11 +142,23 @@ sc.tl.umap(atac, spread=1., min_dist=.5, random_state=11)
 sc.pl.umap(atac, color="leiden", legend_loc="on data")
 ```
 
+![image](https://github.com/user-attachments/assets/4568c0e4-6d88-4f38-bf0b-ea33a338b104)
 
+```python
+ac.tl.rank_peaks_groups(atac, 'leiden', method='t-test')
+```
 
+![image](https://github.com/user-attachments/assets/0a981e17-54db-4fc0-8210-c46994ea4432)
 
+```python
+result = atac.uns['rank_genes_groups']
+groups = result['names'].dtype.names
 
-
+pd.DataFrame(
+    {group + '_' + key[:1]: result[key][group]
+    for group in groups for key in ['names', 'genes', 'pvals']}).head(10)
+```
+![image](https://github.com/user-attachments/assets/87eecff2-0109-408c-b59a-3dddfe0076c6)
 
 
 
