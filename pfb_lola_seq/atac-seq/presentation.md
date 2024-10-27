@@ -110,6 +110,42 @@ sc.pl.highly_variable_genes(atac)
 
 ![image](https://github.com/user-attachments/assets/3db30301-ca8a-4cc5-97b2-fdba2ed43cab)
 
+```python
+np.sum(atac.var.highly_variable)
+```
+
+'np.int64(11771)'
+
+```python
+sc.pp.scale(atac, max_value=10)
+sc.tl.pca(atac, svd_solver='arpack')
+ac.pl.pca(atac, color=['NRCAM', 'SLC1A2', 'SRGN', 'VCAN'], layer='lognorm', func='mean')
+```
+
+![image](https://github.com/user-attachments/assets/036561ae-d4b5-4da3-befe-98437827b959)
+
+```python
+sc.pl.pca_variance_ratio(atac, log=True)
+```
+
+![image](https://github.com/user-attachments/assets/e7f99d4e-e330-4ac9-aedd-a3eb9e58213f)
+
+```python
+sc.pp.neighbors(atac, n_neighbors=10, n_pcs=20)
+sc.tl.leiden(atac, resolution=.5)
+```
+![image](https://github.com/user-attachments/assets/810d965d-2fff-45a0-bdde-4e67eb6bdfd5)
+
+
+```python
+sc.tl.umap(atac, spread=1., min_dist=.5, random_state=11)
+sc.pl.umap(atac, color="leiden", legend_loc="on data")
+```
+
+
+
+
+
 
 
 
