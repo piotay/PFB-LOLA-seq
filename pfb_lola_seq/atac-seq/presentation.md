@@ -2,13 +2,13 @@
 
 ## **Developing pipelines for single cell RNA sequencing (scRNAseq) and, Assay for Transposase-Accessible Chromatin (ATAC-Seq)**.
 
-- First item scRNAseq and ATACseq are next-generation sequencing technologies.
-- Second item ATACseq is to determine how accessible the chromatin is for the transcription machinary.
+- 'scRNAseq and ATACseq are next-generation sequencing technologies.'
+- 'ATACseq is to determine how accessible the chromatin is for the transcription machinary.'
   
 ## The datasets used
 
-- First item NCBI GEO accession: GSE218392, 
-- Second item Human cell Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis
+- 'NCBI GEO accession: GSE218392, 
+- 'Human cell Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis'
 
 ## Pipeline: scanpy
 ```python
