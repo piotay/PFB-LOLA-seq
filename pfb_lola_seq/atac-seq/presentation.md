@@ -2,8 +2,8 @@
 
 ## **Developing pipelines for single cell RNA sequencing (scRNAseq) and, Assay for Transposase-Accessible Chromatin (ATAC-Seq)**.
 
- **scRNAseq** and **ATACseq** are next-generation sequencing technologies.
-- **ATACseq** is used to determine how accessible the chromatin is for the transcription machinery.
+**scRNAseq** and **ATACseq** are next-generation sequencing technologies.
+**ATACseq** is used to determine how accessible the chromatin is for the transcription machinery.
   
 ## The datasets used
 
