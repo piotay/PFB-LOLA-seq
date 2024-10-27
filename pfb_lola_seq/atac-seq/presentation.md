@@ -146,7 +146,8 @@ pd.DataFrame(
     {group + '_' + key[:1]: result[key][group]
     for group in groups for key in ['names', 'genes', 'pvals']}).head(10)
 ```
-![image](https://github.com/user-attachments/assets/87eecff2-0109-408c-b59a-3dddfe0076c6)
+![image](https://github.com/user-attachments/assets/7a9a8e00-bb10-4518-8c9c-d0da61a536a5)
+
 
 
 
