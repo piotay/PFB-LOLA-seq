@@ -402,3 +402,8 @@ After principal component analysis and dimensionality reduction, another umap is
 ![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/UMAP.png)
 ![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/dotplot.png)
 
+# Conclusions / Future Directions:
+We generated necessary files to run snRNAseq and snATACseq.
+We ran snRNAseq and snATACseq pipelines to independently visualize the data.
+
+Now that we have paired snRNAseq and snATACseq data processed, a future direction would be integrating them to connect chromatin accessibility with transcription in these different cells!
