@@ -35,18 +35,19 @@ From the original fragments file, we needed to remove had several lines of comme
 >'grep v # fragments.tsv > fragments_modified.tsv
 >'grep -v -e GL -e KI fragments_modified.tsv > fragments_modified.tsv
 
-chr1    10078   10308   GGAATCTTCCGTAAAC-1      1
-chr1    10079   10261   GGCTAGACAACCTAAT-1      1
-chr1    10079   10309   TATGGGCGTAAACAAG-1      1
-chr1    10084   10317   GGTGTTGTCCGCCTCA-1      1
-
+ ```
+  chr1  10078  10308  GGAATCTTCCGTAAAC-1  1 
+  chr1  10079  10261  GGCTAGACAACCTAAT-1  1 
+  chr1  10079  10309  TATGGGCGTAAACAAG-1  1 
+  chr1  10084  10317  GGTGTTGTCCGCCTCA-1  1 
+```
 The other file needed contained the length of each human chromosome in nucleotides, which specified the length we were mapping onto.
-
+```
 chr1	249250621
 chr2	243199373
 chr3	198022430
 chr4	191154276
-
+```
 There are several options for output, and we opted for the output which collapses our overlapping reads based on location. We also did not include zeros to decrease our file size.
 >'bedtools genomecov =dz -i fragments_modified.tsv -g human_chrom_sizes.txt > genome_cov.txt
 
