@@ -6,17 +6,17 @@ using another bedtools function.
 # what is a peak
 Given we are only interested in open chromatin, and ATAC seq peaks should be relatively sparse, we need to set a threshold depth at which we call something a peak, and below that is noise. We will use this value in the peak calling algorithm. We also arent interested in short peaks fluctuating over and under this threshold, so we perform a filtering step to trash peaks with lengths shorter than 100:
 Read depth distribution:
-```
+```python3
 import pandas as pd
 import matplotlib.pyplot as plt
 data=pd.read_csv('/Users/pfb2024/Downloads/MA8_genome_cov_bg.txt',sep='\t',header=None)
 data.hist(column=3,range=[0,100],bins=50)
 plt.axvline(x=20, color = 'red')
 plt.title('counts')
-!(histogramofdepths_ATAC.png)
+!(./generatingfiles/callpeaksfigs/histogramofdepths_ATACseq.png)
 ```
 Peak length distribution (before filtering):
-```
+```python3
 data2=pd.read_csv('/Users/pfb2024/Lola-seq/ma8_test_bg.txt',sep='\t',header=None) #unfiltered peaks
 data2['length']=data2[2]-data2[1] #calculate length
 data2.hist(column='length',range=[0,1000],bins=50)
