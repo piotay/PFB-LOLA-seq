@@ -2,6 +2,11 @@
 
 This dataset is derived from a patient with ischemic cardiomyopathy, or damage to the heart muscle. The tissue is obtained during a heart transplant when a patient is receiving a donor heart. The tissue is processed to obtain information about transcriptomic signatures and chromatin accessibility on a single-cellular level.
 
+NCBI GEO accession: GSE218392
+Human cell Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis
+The hd5 file had two modalities, RNA and ATAC.
+
+
 ![Alttext](https://cdn.10xgenomics.com/image/upload/v1709930681/blog/GEM-X%20Launch%20blog/Figure_1.png)
 
 __Libraries used:__
@@ -28,12 +33,15 @@ Genes and gene counts between cells are normalized, scaled, and selected for var
 
 ## Dimensionality reduction and clustering
 Principal component analysis returns principal compenents that describe some measure of the varibaility in the data. 
+
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/PCA_elbowplot.png)
 
 Principal compoenents are then used to compute the neighborhood graph for cells. The Uniform MAnifold Approximation and Projection (UMAP) represents the reduced dimensionality accounting for the variance in gene expression between groups of cells.
+
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/UMAP.png)
 
 Each group is a cluster with grouped by similar gene expression. The next step would be to annotate the cell clusters. To do this, we look at the top differentially expressed genes for each cluster.
+
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/TopDEgenes.png)
 
 This file is used moving forward in the ATACseq analysis.
@@ -44,7 +52,9 @@ The ATACseqdata is processed in a very similar pipeline to the snRNAseq data, ge
 ## Preprocessing and quality control
 For quality control, instead of working with gene counts we are working with peaks located at genes. We start with a file that contains a matrix containing the peak height of each gene in all collected nuclei. We need again filter using biologically relevant metrics.
 
-ATAC-specific QC involves looking at nucleosome signal and transcription start stie (TSS) enrichment. We expect chromatin accessibility enriched around TSSs.
+![Alttext
+
+ATAC-specific QC involves looking at nucleosome signal and transcription start site (TSS) enrichment. We expect chromatin accessibility enriched around TSSs.
 
 ## Principal component analysis, dimensionality reduction, and clustering
 The data is again normalized, scaled, selected for highly variable features.
