@@ -1,0 +1,13 @@
+#To get the coverage at a single nucleotide level, we needed to use bedtools
+
+
+#Here we use unix to remove chromosome scaffold entries and commented out lines that 
+# are not in the correct format. This was run in terminal.
+#
+# grep -v -e GL -e KI MA8.tsv > MA8_filtered.tsv
+#grep -v # MA8_filtered.tsv > MA8_filtered_final.tsv
+
+#This uses the length of each chromosome from human genome to map out the reads to the genome 
+# on a single nucleotide basis. We did not include zeros. We ran this in the terminal as well
+#
+# bedtools genomecov -dz -i MA8_filtered_final.tsv -g human_chrom_sizes_fix.txt > MA8_genome_cov.txt 
