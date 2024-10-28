@@ -39,7 +39,7 @@ Principal component analysis returns principal compenents that describe some mea
 
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/PCA_elbowplot.png)
 
-Principal compoenents are then used to compute the neighborhood graph for cells. The Uniform MAnifold Approximation and Projection (UMAP) represents the reduced dimensionality accounting for the variance in gene expression between groups of cells.
+Principal components are then used to compute the neighborhood graph for cells. The Uniform MAnifold Approximation and Projection (UMAP) represents the reduced dimensionality accounting for the variance in gene expression between groups of cells.
 
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/UMAP.png)
 
