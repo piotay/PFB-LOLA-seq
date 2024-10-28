@@ -1,9 +1,9 @@
-##Calling Peaks
-#input file
+# Calling Peaks
+# input file
 Now that we have the number of reads (read depth) at each coordinate in the genome, we have to define
 what a signal peak is, and where they are, so that we can then look for the closest genomic elements
 using another bedtools function. 
-#what is a peak
+# what is a peak
 Given we are only interested in open chromatin, and ATAC seq peaks should be relatively sparse, we need to set a threshold depth at which we call something a peak, and below that is noise. We will use this value in the peak calling algorithm. We also arent interested in short peaks fluctuating over and under this threshold, so we perform a filtering step to trash peaks with lengths shorter than 100:
 Read depth distribution:
 `
@@ -23,7 +23,7 @@ data2.hist(column='length',range=[0,1000],bins=50)
 plt.axvline(x=100, color = 'red')
 !(histogramofpeaklengths.png)
 `
-#peak calling script
+# Peak calling script
 `
 #!usr/bin/env python3
 
@@ -66,10 +66,10 @@ with open(outputfile,'w') as output:
         output.write(f'{peak[0]}\t{peak[1]}\t{peak[2]}\n')
 output.close()
 `
-Now we can assign these peaks to nearby genomic features with bedtools assignClosest.
+Now we can pass output to bedtools assignClosest to get nearest genomic features for the peaks.
 
 
-#nb
+# nb
 when we calculated depth, we were using bedtools GenomeCov -bg. To more accurately look at this distribution on a per base basis for the entire genome:
 `
 newdepth={}
