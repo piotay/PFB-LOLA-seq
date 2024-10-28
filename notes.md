@@ -59,28 +59,57 @@ There are several options for output, and we opted for the output which collapse
 ### Step 3.1: Finding human genome annotations
 
 - We first downloaded a .gff3 file from Gencode that annotates every gene in the human genome
+  ```
+  $ head gencode.v47.gff3
+  ```
+  ```
+  ##gff-version 3
+  #description: evidence-based annotation of the human genome (GRCh38), version 47 (Ensembl 113)
+  #provider: GENCODE
+  #contact: gencode-help@ebi.ac.uk
+  #format: gff3
+  #date: 2024-07-19
+  ##sequence-region chr1 1 248956422
+  chr1	HAVANA	gene	11121	24894	.	+	.	ID=ENSG00000290825.2;gene_id=ENSG00000290825.2;gene_type=lncRNA;gene_name=DDX11L16;level=2;tag=overlaps_pseudogene
+  chr1	HAVANA	transcript	11426	14409	.	+	.	ID=ENST00000832828.1;Parent=ENSG00000290825.2;gene_id=ENSG00000290825.2;transcript_id=ENST00000832828.1;gene_type=lncRNA;gene_name=DDX11L16;transcript_type=lncRNA;transcript_name=DDX11L16-264;level=2;tag=basic,TAGENE
+  chr1	HAVANA	exon	11426	11671	.	+	.	ID=exon:ENST00000832828.1:1;Parent=ENST00000832828.1;gene_id=ENSG00000290825.2;transcript_id=ENST00000832828.1;gene_type=lncRNA;gene_name=DDX11L16;transcript_type=lncRNA;transcript_name=DDX11L16-264;exon_number=1;exon_id=ENSE00004248702.1;level=2;tag=basic,TAGENE
+  chr1	HAVANA	exon	12010	12227	.	+	.	ID=exon:ENST00000832828.1:2;Parent=ENST00000832828.1;gene_id=ENSG00000290825.2;transcript_id=ENST00000832828.1;gene_type=lncRNA;gene_name=DDX11L16;transcript_type=lncRNA;transcript_name=DDX11L16-264;exon_number=2;exon_id=ENSE00004248735.1;level=2;tag=basic,TAGENE
+  chr1	HAVANA	exon	12613	12721	.	+	.	ID=exon:ENST00000832828.1:3;Parent=ENST00000832828.1;gene_id=ENSG00000290825.2;transcript_id=ENST00000832828.1;gene_type=lncRNA;gene_name=DDX11L16;transcript_type=lncRNA;transcript_name=DDX11L16-264;exon_number=3;exon_id=ENSE00003582793.1;level=2;tag=basic,TAGENE
+  chr1	HAVANA	exon	13221	14409	.	+	.	ID=exon:ENST00000832828.1:4;Parent=ENST00000832828.1;gene_id=ENSG00000290825.2;transcript_id=ENST00000832828.1;gene_type=lncRNA;gene_name=DDX11L16;transcript_type=lncRNA;transcript_name=DDX11L16-264;exon_number=4;exon_id=ENSE00004248703.1;level=2;tag=basic,TAGENE
+  ```
 - Next, we converted this .gff3 file to a .bed file using gff2bed from BEDOPS package
   ```
   $ gff2bed < input.gff3 > output.bed
   ```
-- filter to only genes
+- Since the .gff3 file contains exons as well as genes, we filtered to only include genes
   ```
   $ awk '{if ($8 == "gene") print}' file.bed
   ```
-- filter to only protein-coding genes
+- Further, we filtered to only protein-coding genes
   ```
   $ awk '/gene_type=protein_coding/ {print $0}' file.bed
   ```
+  ```
+  chr1	65418	71585	ENSG00000186092.7	.	+	HAVANA	gene	.ID=ENSG00000186092.7;gene_id=ENSG00000186092.7;gene_type=protein_coding;gene_name=OR4F5;level=2;hgnc_id=HGNC:14825;havana_gene=OTTHUMG00000001094.4
+  chr1	450739	451678	ENSG00000284733.2	.	-	HAVANA	gene	.ID=ENSG00000284733.2;gene_id=ENSG00000284733.2;gene_type=protein_coding;gene_name=OR4F29;level=2;hgnc_id=HGNC:31275;havana_gene=OTTHUMG00000002860.3
+  chr1	685715	686654	ENSG00000284662.2	.	-	HAVANA	gene	.ID=ENSG00000284662.2;gene_id=ENSG00000284662.2;gene_type=protein_coding;gene_name=OR4F16;level=2;hgnc_id=HGNC:15079;havana_gene=OTTHUMG00000002581.3
+  ```
 - Use python script `polish_bed.py` to update the ENSEMBL ID with the gene name
+  ```
+  chr1	65418	71585	OR4F5	.	+	HAVANA	gene	.	ID=ENSG00000186092.7;gene_id=ENSG00000186092.7;gene_type=protein_coding;gene_name=OR4F5;level=2;hgnc_id=HGNC:14825;havana_gene=OTTHUMG00000001094.4
+  chr1	450739	451678	OR4F29	.	-	HAVANA	gene	.	ID=ENSG00000284733.2;gene_id=ENSG00000284733.2;gene_type=protein_coding;gene_name=OR4F29;level=2;hgnc_id=HGNC:31275;havana_gene=OTTHUMG00000002860.3
+  chr1	685715	686654	OR4F16	.	-	HAVANA	gene	.	ID=ENSG00000284662.2;gene_id=ENSG00000284662.2;gene_type=protein_coding;gene_name=OR4F16;level=2;hgnc_id=HGNC:15079;havana_gene=OTTHUMG00000002581.3
+  ```
 - filter to just location and gene
   ```
   $ cut -f 1-4
   ```
-- this file is used to annotate peaks, should look like:
   ```
   chr1	65418	71585	OR4F5
   chr1	450739	451678	OR4F29
+  chr1	685715	686654	OR4F16
   ```
+- This is the file we used to annotate peaks!
 
 ### Step 3.2: Annotate the Peaks
 Using the peaks generated from step 2, we determined which genes these peaks are closest to using BedTools
