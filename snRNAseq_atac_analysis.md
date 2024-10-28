@@ -39,7 +39,7 @@ Principal component analysis returns principal compenents that describe some mea
 
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/PCA_elbowplot.png)
 
-Principal components are then used to compute the neighborhood graph for cells. The Uniform MAnifold Approximation and Projection (UMAP) represents the reduced dimensionality accounting for the variance in gene expression between groups of cells.
+Principal components are then used to compute the neighborhood graph for cells. The Uniform Manifold Approximation and Projection (UMAP) represents the reduced dimensionality accounting for the variance in gene expression between groups of cells.
 
 ![Alttext](https://raw.githubusercontent.com/rdalipo1/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/rna_atac_figs/UMAP.png)
 
@@ -55,12 +55,21 @@ The ATACseqdata is processed in a very similar pipeline to the snRNAseq data, ge
 ## Preprocessing and quality control
 For quality control, instead of working with gene counts we are working with peaks located at genes. We start with a file that contains a matrix containing the peak height of each gene in all collected nuclei. We need again filter using biologically relevant metrics.
 
-![Alttext
+![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/preprocessing.png)
 
-ATAC-specific QC involves looking at nucleosome signal and transcription start site (TSS) enrichment. We expect chromatin accessibility enriched around TSSs.
+![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/postprocessing.png)
+
+ATAC-specific QC involves looking at nucleosome signal and transcription start site (TSS) enrichment. The nucleosome signal is the ratio of mono-nucleosomal to nucleosome-free fragments, also used as a signal-to-noise ratio in each cell. We expect chromatin accessibility enriched around TSSs.
+
+![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/nucleosomesignal.png)
+
+![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/TSSenrichment.png)
 
 ## Principal component analysis, dimensionality reduction, and clustering
 The data is again normalized, scaled, selected for highly variable features.
 
 After principal component analysis and dimensionality reduction, another umap is compiled from clustering the chromatin accessibilty data.
+
+![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/UMAP.png)
+![Alttext](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/dotplot.png)
 
