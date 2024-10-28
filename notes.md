@@ -1,27 +1,28 @@
 # LOLA-SEQ
-## _Fixing the freaking files_
+## Fixing the freaking files
 
 While we were downloading our files for linked scRNAseq and scATACseq, we realized that the authors did not provide the necessary files to run the scATACseq part. We needed the following:
 
 - ATAC_fragments.tsv (supplied)
-- matrix? (supplied)
-- fragment index (not provided)
-- peak annotations (not provided)
+- Feature_barcode_matrix.h5 (supplied)
+- fragment_index.tsv (not provided)
+- peak_annotations.tsv (not provided)
 
-## Obtaining the Peak Annontations
+## Obtaining the peak annotations
 The fragments file is composed of all read fragments which have already been aligned to the human genome. It is structured with the following 5 fields:
-
-- chromosome#
-- start_position
-- end_position
+- Chromosome #
+- Start nt position
+- End nt position
 - UMI
-- read_count
+- Read
 
-From this starting material, we needed to generate a file that had the following fields:
-- Peak location
+From this starting material, we needed to generate a peak annotations file that had the following fields:
+- Peak location on chromosome
 - Closest gene
 - Distance from closest gene
 - Location descriptor
+
+![Alt text](https://www.basepairtech.com/wp-content/uploads/2022/06/ATAC_USP47.png)
 
 ## Step 1: Converting read fragments into coverage
 We used __Bedtools Genome Coverage__ as the first step. This tool takes all read locations, and lines them up along the length of the human genome. 
@@ -52,25 +53,12 @@ There are several options for output, and we opted for the output which collapse
 ## Step 2: Calling peaks from the coverage
 
 
-## Step 3: 
+## Step 3: Generating Peak Annotations
 
-- Download .gff3 file from Gencode that annotates every gene in the human genome
-- Convert to .bed file using gff2bed from BEDOPS package
-  >`gff2bed < input.gff3 > output.bed`
+### Step 3.1: Finding human genome annotations
 
-
-
-
-
-
-
-
-
-## Peak Annotations:
-
-### First need annotation of entire genome
-- Download .gff3 file from Gencode that annotates every gene in the human genome
-- Convert to .bed file using gff2bed from BEDOPS package
+- We first downloaded a .gff3 file from Gencode that annotates every gene in the human genome
+- Next, we converted this .gff3 file to a .bed file using gff2bed from BEDOPS package
   >`gff2bed < input.gff3 > output.bed`
 - filter to only genes
   >`awk '{if ($8 == "gene") print}' file.bed`
@@ -83,8 +71,11 @@ There are several options for output, and we opted for the output which collapse
   >`chr1	65418	71585	OR4F5`
   > `chr1	450739	451678	OR4F29`
 
-recieve file from nathan, do `bedtools closest -d -a nate_file -b gene_annotations`
+### Step 3.2: Annotate the Peaks
+Using the peaks generated from step 2, we determined which genes these peaks are closest to using BedTools
+`bedtools closest -d -a nate_file -b gene_annotations`
 
-`format_closest_overlap.py` on the output of bedtools closest, then run `define_distance.py`
+We next wrote two python scripts to help format the output from the `bedtoosl closest` tool.
+We used `format_closest_overlap.py` on the output of bedtools closest, then `define_distance.py` to call the peaks as either "distal" from the gene or "promoter" if the peak is directly overlapping the called gene.
 
-output from this file is sent back to nate for scATAC pipeline
+The output from this file is the final peak annotations file, and is the final piece of our input for the scATAC pipeline!
