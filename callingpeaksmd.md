@@ -3,7 +3,7 @@ Now that we have the number of reads (read depth) at each coordinate in the geno
 # What is a peak
 Given we are only interested in open chromatin, and ATAC seq peaks should be relatively sparse, we need to set a threshold depth at which we call something a peak, and below that is noise. We will use this value in the peak calling algorithm. We also arent interested in short peaks fluctuating over and under this threshold, so we perform a filtering step to trash peaks with lengths shorter than 100:
 
-Read depth distribution:
+Read depth distribution (input file):
 ```python3
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,7 +14,7 @@ plt.title('counts')
 ```
 ![](pfb_lola_seq/generatingfiles/callpeaksfigs/histogramofdepths_ATACseq.png)
 
-Peak length distribution (before filtering):
+Peak length distribution (after calling all peaks regardless of length):
 ```python3
 data2=pd.read_csv('/Users/pfb2024/Lola-seq/ma8_test_bg.txt',sep='\t',header=None) #unfiltered peaks
 data2['length']=data2[2]-data2[1] #calculate length
