@@ -1,4 +1,4 @@
-# PFB-RNA_seq-2024
+# PFB-LOLA_seq
 
 
 # Github Setup
