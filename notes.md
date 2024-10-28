@@ -1,4 +1,5 @@
-# LOLA-SEQ
+![Alt text](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/LOLA-SEQ-10-28-2024.jpg)
+
 # Goals
 This dataset is derived from a patient with ischemic cardiomyopathy, or heart failure. The tissue is obtained during a heart transplant when a patient is receiving a donor heart. The tissue is processed to obtain information about transcriptomic signatures and chromatin accessibility on a single-cellular level.
 
