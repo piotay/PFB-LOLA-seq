@@ -31,8 +31,8 @@ import sys
 
 inputfile=sys.argv[1]
 outputfile=sys.argv[2]
-depththreshold=sys.argv[3]
-lengththreshold=sys.argv[4]
+depththreshold=int(sys.argv[3])
+lengththreshold=int(sys.argv[4])
 peaks=[]
 
 #ensure both arguments are present, else exit
@@ -86,6 +86,8 @@ chr1    777624  778145
 chr1    778230  779483
 chr1    779684  780045
 chr1    816972  817508
+$wc -l MA8_genome_peaks.txt
+7753504 MA8_genome_peaks.txt
 ```
 
 # nb
@@ -136,4 +138,11 @@ plt.axvline(x=200, color = 'green')
 ```
 ![](pfb_lola_seq/generatingfiles/callpeaksfigs/depthpernt_ATACseq.png)
 
-Perhaps we could increase the depth threshold for a peak to 200 or so (green) from 20 (red)
+Perhaps we could increase the depth threshold for a peak to 200 or so (green) from 20 (red).
+If we do this:
+```bash
+$head -10 MA8_genome_depth200_length100.txt
+
+$wc -l MA8_depth200_length100.txt
+XXXXXXXXX MA8_depth200_length100.txt
+```
