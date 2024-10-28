@@ -89,7 +89,31 @@ chr1    816972  817508
 ```
 
 # nb
-when we calculated depth, we were using bedtools GenomeCov -bg. To more accurately look at this distribution on a per base basis for the entire genome:
+When we calculated depth using the fragments, we used bedtools GenomeCov -bg to reduce file size. Thus, these lines:
+```bash
+chr1    10078   10079   3
+chr1    10079   10084   5
+chr1    10084   10085   7
+chr1    10085   10090   9
+```
+represent the following:
+```bash
+chr1    10078    3
+chr1    10079    5
+chr1    10080    5
+chr1    10081    5
+chr1    10082    5
+chr1    10083    5
+chr1    10084    7
+chr1    10085    9
+chr1    10086    9
+chr1    10087    9
+chr1    10088    9
+chr1    10089    9
+...
+```
+To more accurately look at this distribution on a per base basis for the entire genome:
+
 ```python3
 newdepth={} #{[depthcount:occurences in genome]}
 with open('/Users/pfb2024/Downloads/MA8_genome_cov_bg.txt','r') as genomecor:
@@ -111,4 +135,5 @@ plt.axvline(x=20, color = 'red')
 plt.axvline(x=200, color = 'green')
 ```
 ![](pfb_lola_seq/generatingfiles/callpeaksfigs/depthpernt_ATACseq.png)
-perhaps we could increase the depth threshold for a peak to 200 or so (green) from 20 (red)
+
+Perhaps we could increase the depth threshold for a peak to 200 or so (green) from 20 (red)
