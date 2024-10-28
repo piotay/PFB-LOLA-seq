@@ -4,11 +4,13 @@ import sys
 
 inputfile=sys.argv[1]
 outputfile=sys.argv[2]
+depththreshold=int(sys.argv[3])
+lengththreshold=int(sys.argv[4])
 peaks=[]
 
 #ensure both arguments are present, else exit
-if len(sys.argv) != 3:
-    print(f'Usage: {sys.argv[0]} <input file name> <output file name>')
+if len(sys.argv) != 5:
+    print(f'Usage: {sys.argv[0]} <input file name> <output file name> <depth threshold for peaks> <length threshold>')
     exit(1)
 
 
@@ -19,18 +21,18 @@ with open(inputfile,'r') as file: #open input file
     for line in file:
         line=line.rstrip()
         base=line.split('\t') #split into list: ['chromosome',coordinate,count]
-        if int(base[3]) > 19 and in_peak == False: #if count is 20 or more and we are out of a peak:
+        if int(base[3]) > depththreshold and in_peak == False: #if count is 20 or more and we are out of a peak:
             in_peak=True #change to in peak
             start_coord=int(base[1]) #remember start of peak coordinate
-        if int(base[3]) <= 19 and in_peak == True: #if count is less than 20 and we are in a peak:
+        if int(base[3]) <= depththreshold and in_peak == True: #if count is less than 20 and we are in a peak:
             in_peak = False #we are no longer in the peak
             end_coord=int(base[1]) #remember end of peak coordinate
             peaks.append([base[0],start_coord,end_coord]) #add the peak to list of peaks ['chr1',startcoord,endcoord]
 
-#filter out very short peaks (2 or less bases)
+#filter out short peaks (100 or less bases)
 filtered_peaks=[]
 for peak in peaks:
-    if peak[2]-peak[1] > 99: #if peak is 4 or more nts:
+    if peak[2]-peak[1] > lengththreshold: #if peak is 100 or more nts:
         filtered_peaks.append(peak) #add to filtered peaks list
     else: #skip if not
         continue
