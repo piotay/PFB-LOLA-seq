@@ -116,8 +116,29 @@ Using the peaks generated from step 2, we determined which genes these peaks are
 ```
 $ bedtools closest -d -a <peak_calls file> -b <gene_annotations_file>
 ```
+The -d option will include the distance from the beak to the annotated gene.
+
+This generated the following file:
+```
+chr1	10103	10339	chr1	65418	71585	OR4F5	55080
+chr1	181061	181163	chr1	65418	71585	OR4F5	109477
+chr1	181357	181627	chr1	65418	71585	OR4F5	109773
+chr1	191297	191679	chr1	65418	71585	OR4F5	119713
+chr1	631501	631696	chr1	685715	686654	OR4F16	54020
+chr1	634593	634715	chr1	685715	686654	OR4F16	51001
+chr1	777624	778145	chr1	685715	686654	OR4F16	90971
+```
 
 We next wrote two python scripts to help format the output from the `bedtoosl closest` tool.
 We used `format_closest_overlap.py` on the output of bedtools closest, then `define_distance.py` to call the peaks as either "distal" from the gene or "promoter" if the peak is directly overlapping the called gene.
 
-The output from this file is the final peak annotations file, and is the final piece of our input for the scATAC pipeline!
+The output from this file (seen below) is the final peak annotations file, and is the final piece of our input for the scATAC pipeline!
+```
+chr1_10103_10339	OR4F5	55080
+chr1_181061_181163	OR4F5	109477
+chr1_181357_181627	OR4F5	109773
+chr1_191297_191679	OR4F5	119713
+chr1_631501_631696	OR4F16	54020
+chr1_634593_634715	OR4F16	51001
+chr1_777624_778145	OR4F16	90971
+```
