@@ -49,7 +49,7 @@ chr3	198022430
 chr4	191154276
 ```
 There are several options for output, and we opted for the output which collapses our overlapping reads based on location. We also did not include zeros to decrease our file size.
->'bedtools genomecov =dz -i fragments_modified.tsv -g human_chrom_sizes.txt > genome_cov.txt
+>'bedtools genomecov =dz -i fragments_modified.tsv -g human_chrom_sizes.txt > genome_cov.txt`
 
 ## Step 2: Calling peaks from the coverage
 
@@ -60,21 +60,33 @@ There are several options for output, and we opted for the output which collapse
 
 - We first downloaded a .gff3 file from Gencode that annotates every gene in the human genome
 - Next, we converted this .gff3 file to a .bed file using gff2bed from BEDOPS package
-  >`gff2bed < input.gff3 > output.bed`
+  ```
+  $ gff2bed < input.gff3 > output.bed
+  ```
 - filter to only genes
-  >`awk '{if ($8 == "gene") print}' file.bed`
+  ```
+  $ awk '{if ($8 == "gene") print}' file.bed
+  ```
 - filter to only protein-coding genes
-  >`awk '/gene_type=protein_coding/ {print $0}' file.bed`
+  ```
+  $ awk '/gene_type=protein_coding/ {print $0}' file.bed
+  ```
 - Use python script `polish_bed.py` to update the ENSEMBL ID with the gene name
 - filter to just location and gene
-  >`% cut -f 1-4`
+  ```
+  $ cut -f 1-4
+  ```
 - this file is used to annotate peaks, should look like:
-  >`chr1	65418	71585	OR4F5`
-  > `chr1	450739	451678	OR4F29`
+  ```
+  chr1	65418	71585	OR4F5
+  chr1	450739	451678	OR4F29
+  ```
 
 ### Step 3.2: Annotate the Peaks
 Using the peaks generated from step 2, we determined which genes these peaks are closest to using BedTools
-`bedtools closest -d -a nate_file -b gene_annotations`
+```
+$ bedtools closest -d -a <peak_calls file> -b <gene_annotations_file>
+```
 
 We next wrote two python scripts to help format the output from the `bedtoosl closest` tool.
 We used `format_closest_overlap.py` on the output of bedtools closest, then `define_distance.py` to call the peaks as either "distal" from the gene or "promoter" if the peak is directly overlapping the called gene.
