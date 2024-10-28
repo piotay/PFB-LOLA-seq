@@ -42,7 +42,7 @@ PFB-LOLA-seq $ pip install -e .
 This will install the project dependencies in the `lola-seq` virtual environment.
 
 # SRAToolkit Instructions
-# mot checking
+
 Download from mamba:
 ```bash
 mamba activate lola-seq
