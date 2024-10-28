@@ -1,10 +1,10 @@
 # snRNASeq Analysis
 
-This dataset is derived from a patient with ischemic cardiomyopathy, or damage to the heart muscle. The tissue is obtained during a heart transplant when a patient is receiving a donor heart. The tissue is processed to obtain information about transcriptomic signatures and chromatin accessibility on a single-cellular level.
+This dataset is derived from a patient with ischemic cardiomyopathy, or heart failure. The tissue is obtained during a heart transplant when a patient is receiving a donor heart. The tissue is processed to obtain information about transcriptomic signatures and chromatin accessibility on a single-cellular level.
 
 NCBI GEO accession: GSE218392
-Human cell Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis
-The hd5 file had two modalities, RNA and ATAC.
+Targeting Immune-Fibroblast Crosstalk in Myocardial Infarction and Cardiac Fibrosis
+The fltered barcode matrix in .h5 file had two modalities, RNA and ATAC. RNA was used for one half of the analysis and ATAC was used for the other half.
 
 
 ![Alttext](https://cdn.10xgenomics.com/image/upload/v1709930681/blog/GEM-X%20Launch%20blog/Figure_1.png)
@@ -14,6 +14,7 @@ __Libraries used:__
 - muon: a Python framework designed to work with multimodal omics data
 - pandas
 - numpy
+- matlabplot
 
 ## Preprocessing and quality control
 We start with a file that contains a matrix containing the level of expression of each gene in all collected nuclei. We need to filter using biologically relevant metrics.
@@ -22,7 +23,9 @@ We start with a file that contains a matrix containing the level of expression o
 
 
 ```
+#filter by minimum and maximum gene counts
 mu.pp.filter_obs(rna, 'n_genes_by_counts', lambda x: (x >= 200) & (x < 4000))
+#filter by percentage mitochondria to remove potential dead or stressed cells
 mu.pp.filter_obs(rna, 'pct_counts_mt', lambda x: x < 25)
 rna = rna[rna.obs['percent_ribo'] < 0.05, :]
 ```
