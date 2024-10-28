@@ -89,6 +89,7 @@ chr1    816972  817508
 $wc -l MA8_genome_peaks.txt
 7753504 MA8_genome_peaks.txt
 ```
+There are 7,750,000 peaks.
 
 # nb
 When we calculated depth using the fragments, we used bedtools GenomeCov -bg to reduce file size. Thus, these lines:
@@ -139,10 +140,19 @@ plt.axvline(x=200, color = 'green')
 ![](pfb_lola_seq/generatingfiles/callpeaksfigs/depthpernt_ATACseq.png)
 
 Perhaps we could increase the depth threshold for a peak to 200 or so (green) from 20 (red).
-If we do this:
+If we do this we only end up with 7,500 peaks:
 ```bash
 $head -10 MA8_genome_depth200_length100.txt
-
+chr1    778536  778827
+chr1    827477  827596
+chr1    959250  959362
+chr1    1000106 1000400
+chr1    1019398 1019872
+chr1    1115945 1116548
+chr1    1231890 1232319
+chr1    1273791 1273898
+chr1    1273991 1274200
+chr1    1307898 1308551
 $wc -l MA8_depth200_length100.txt
-XXXXXXXXX MA8_depth200_length100.txt
+7438 MA8_depth200_length100.txt
 ```
