@@ -6,7 +6,7 @@ using another bedtools function.
 # what is a peak
 Given we are only interested in open chromatin, and ATAC seq peaks should be relatively sparse, we need to set a threshold depth at which we call something a peak, and below that is noise. We will use this value in the peak calling algorithm. We also arent interested in short peaks fluctuating over and under this threshold, so we perform a filtering step to trash peaks with lengths shorter than 100:
 Read depth distribution:
-`
+```
 import pandas as pd
 import matplotlib.pyplot as plt
 data=pd.read_csv('/Users/pfb2024/Downloads/MA8_genome_cov_bg.txt',sep='\t',header=None)
@@ -14,17 +14,17 @@ data.hist(column=3,range=[0,100],bins=50)
 plt.axvline(x=20, color = 'red')
 plt.title('counts')
 !(histogramofdepths_ATAC.png)
-`
+```
 Peak length distribution (before filtering):
-`
+```
 data2=pd.read_csv('/Users/pfb2024/Lola-seq/ma8_test_bg.txt',sep='\t',header=None) #unfiltered peaks
 data2['length']=data2[2]-data2[1] #calculate length
 data2.hist(column='length',range=[0,1000],bins=50)
 plt.axvline(x=100, color = 'red')
 !(histogramofpeaklengths.png)
-`
+```
 # Peak calling script
-`
+```
 #!usr/bin/env python3
 
 import sys
@@ -65,22 +65,22 @@ with open(outputfile,'w') as output:
     for peak in filtered_peaks:
         output.write(f'{peak[0]}\t{peak[1]}\t{peak[2]}\n')
 output.close()
-`
+```
 Now we can pass output to bedtools assignClosest to get nearest genomic features for the peaks.
 
 
 # nb
 when we calculated depth, we were using bedtools GenomeCov -bg. To more accurately look at this distribution on a per base basis for the entire genome:
-`
-newdepth={}
+```
+newdepth={} #{[depthcount:occurences in genome]}
 with open('/Users/pfb2024/Downloads/MA8_genome_cov_bg.txt','r') as genomecor:
     for line in genomecor:
         line=line.rstrip()
         values=line.split('\t')
-        if int(values[3]) in newdepth:
-            newdepth[int(values[3])]+=int(values[2])-int(values[1])
+        if int(values[3]) in newdepth: #if depthcount already appears in dictionary
+            newdepth[int(values[3])]+=int(values[2])-int(values[1]) #add length of occurences
         else:
-            newdepth[int(values[3])]=int(values[2])-int(values[1])
+            newdepth[int(values[3])]=int(values[2])-int(values[1]) #if not add to it and set as length
 newdepths=pd.DataFrame(newdepth.items())
 sortednewdepths=newdepths.sort_values(by=0)
 
@@ -91,5 +91,5 @@ plt.ylabel('log(# occurrences)')
 plt.axvline(x=20, color = 'red')
 plt.axvline(x=200, color = 'green')
 !(depthpernt_ATACseq.png)
-`
+```
 perhaps we could increase the depth threshold for a peak to 200 or so (green) from 20 (red)
