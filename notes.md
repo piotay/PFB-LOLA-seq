@@ -32,10 +32,13 @@ We used __Bedtools Genome Coverage__ as the first step. This tool takes all read
 We slightly altered our two input files so that they would be compatible with this tool. 
 
 From the original fragments file, we needed to remove had several lines of comment and reads that mapped onto chromosome scaffolds: We wrote the system output to a new file:
->'grep v # fragments.tsv > fragments_modified.tsv
->'grep -v -e GL -e KI fragments_modified.tsv > fragments_modified.tsv
-
- ```
+```
+$ grep v # fragments.tsv > fragments_modified.tsv
+```
+```
+$ grep -v -e GL -e KI fragments_modified.tsv > fragments_modified.tsv
+```
+```
   chr1  10078  10308  GGAATCTTCCGTAAAC-1  1 
   chr1  10079  10261  GGCTAGACAACCTAAT-1  1 
   chr1  10079  10309  TATGGGCGTAAACAAG-1  1 
@@ -49,7 +52,9 @@ chr3	198022430
 chr4	191154276
 ```
 There are several options for output, and we opted for the output which collapses our overlapping reads based on location. We also did not include zeros to decrease our file size.
->'bedtools genomecov =dz -i fragments_modified.tsv -g human_chrom_sizes.txt > genome_cov.txt`
+```
+$ bedtools genomecov =dz -i fragments_modified.tsv -g human_chrom_sizes.txt > genome_cov.txt
+```
 
 ## Step 2: Calling peaks from the coverage
 
