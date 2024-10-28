@@ -1,4 +1,4 @@
-# PFB-LOLA_seq
+![Alt text](https://raw.githubusercontent.com/piotay/PFB-LOLA-seq/refs/heads/main/pfb_lola_seq/scrna-seq/atac/LOLA-SEQ-10-28-2024.jpg)
 
 
 # Github Setup
